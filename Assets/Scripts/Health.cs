@@ -12,19 +12,16 @@ public class Health : MonoBehaviour
 
     public PigEnemy pigRoot;
 
-    private AudioSource audioSource;
+    public GameObject audioSource;
 
-    [SerializeField]
-    private float hitDelayTime, hitDelayCounter;
-
-    private bool justBeenHit;
+    public bool dead= false;
 
 
 
-    private void Awake()
+    /*private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-    }
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -33,29 +30,23 @@ public class Health : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (justBeenHit)
-        {
-
-            hitDelayCounter -= Time.deltaTime;
-            if(hitDelayCounter < 0)
-                justBeenHit= false;
-        }
-    }
-
 
     public void TakeDamage(float damage)
     {
-        if(justBeenHit) return;
-
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (!dead)
         {
-           
-            GameManager.Instance.pigsKilled ++;
-            audioSource.Play();
-            pigRoot.Kill();
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                dead = true;
+                print("died");
+                GameManager.Instance.pigsKilled++;
+                //audioSource.SetActive(true);
+                //audioSource.transform.SetParent(null);
+                Instantiate(audioSource, transform.position, transform.rotation);
+
+                pigRoot.Kill();
+            }
         }
     }
 }
