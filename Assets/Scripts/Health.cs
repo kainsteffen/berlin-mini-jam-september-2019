@@ -12,11 +12,22 @@ public class Health : MonoBehaviour
 
     public PigEnemy pigRoot;
 
+    private AudioSource audioSource;
+
+
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
     }
+
+
 
     public void TakeDamage(float damage)
     {
@@ -24,6 +35,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             GameManager.Instance.pigsKilled ++;
+            audioSource.Play();
             pigRoot.Kill();
         }
     }
