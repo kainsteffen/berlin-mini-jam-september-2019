@@ -6,7 +6,7 @@ public class TESTEventListener : MonoBehaviour
 {
 
 
-    private void OnEnable()
+    private void Start()
     {
         GameManager.Instance.GameOverEvent += ImDead;
     }
@@ -18,7 +18,7 @@ public class TESTEventListener : MonoBehaviour
 
     private void ImDead()
     {
-
+        print("dead");
     }
 
 }
