@@ -48,8 +48,7 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
@@ -68,8 +67,8 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Debug.Log("new game");
             NewGame();
-
         }
     }
 

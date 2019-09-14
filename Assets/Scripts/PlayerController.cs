@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     Vector3 desiredMovementVector;
 
+    public RamboRotater ramboRotater;
+
     private void Start()
     {
         GameManager.Instance.activePlayers.Add(transform);
@@ -55,8 +57,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+
+        ramboRotater.UpdateRotation(rb.velocity.magnitude / maxSpeed);
         /*
-        
+        ramboRotater
         float deltaTime = Time.deltaTime;
         //PID Code
         float pError = Vector3.SignedAngle(transform.forward, desiredMovementVector, transform.up);
