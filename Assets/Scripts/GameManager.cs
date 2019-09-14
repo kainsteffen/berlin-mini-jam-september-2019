@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public int maxLifes, currentLifes;
 
-    public event Action GameOverEvent = delegate { };
+
 
 
     public List<Transform> activePlayers;
@@ -58,12 +58,12 @@ public class GameManager : MonoBehaviour
     {
         currentLifes--;
         if (currentLifes == 0)
-            GameOverEvent();
+            NewGame();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        if(Input.GetKeyDown(KeyCode.Space))
             NewGame();
     }
 
