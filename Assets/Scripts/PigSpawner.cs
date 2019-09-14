@@ -10,8 +10,9 @@ public class PigSpawner : MonoBehaviour
     [SerializeField]
     private PigEnemy pigPrefab;
 
-    [SerializeField]
-    private List<Vector3SO> playerPositions;
+
+    private List<Transform> activePlayers;
+
 
     [SerializeField]
     private float spawnHeight;
@@ -26,6 +27,13 @@ public class PigSpawner : MonoBehaviour
 
 
     private float spawnCounter;
+
+
+
+    private void Awake()
+    {
+        activePlayers = GameManager.Instance.activePlayers;
+    }
 
 
 
@@ -73,13 +81,13 @@ public class PigSpawner : MonoBehaviour
         Vector3 newSpawnPosition;
         Vector2 pointInCircle = Vector2.zero;
 
-        if (playerPositions.Count > 1)
+        if (activePlayers.Count > 1)
         {
             //flip a coin
         }
         else
         {
-            pointInCircle = new Vector2(playerPositions[0].position.x, playerPositions[0].position.z) + Random.insideUnitCircle * spawnRange;
+            pointInCircle = new Vector2(activePlayers[0].position.x, activePlayers[0].position.z) + Random.insideUnitCircle * spawnRange;
         }
 
 
