@@ -30474,7 +30474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pigsKilled: 0
   maxLifes: 0
-  currentLifes: -1
+  currentLifes: 3
   activePlayers: []
 --- !u!4 &2071865880
 Transform:
@@ -31561,14 +31561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 247681042}
   smoothSpeed: 4
---- !u!81 &5203556516692010941
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5203556516692010942}
-  m_Enabled: 1
 --- !u!1 &5203556516692010942
 GameObject:
   m_ObjectHideFlags: 0
@@ -31579,7 +31571,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5203556516692010930}
   - component: {fileID: 5203556516692010931}
-  - component: {fileID: 5203556516692010941}
   - component: {fileID: 5203556516692010929}
   - component: {fileID: 5203556516692010940}
   m_Layer: 0

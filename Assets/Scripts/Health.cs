@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public bool dead= false;
+
 
 
     private void Awake()
@@ -31,13 +33,17 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (!dead)
         {
-            print("died");
-            GameManager.Instance.pigsKilled ++;
-            audioSource.Play();
-            pigRoot.Kill();
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                dead = true;
+                print("died");
+                GameManager.Instance.pigsKilled++;
+                audioSource.Play();
+                pigRoot.Kill();
+            }
         }
     }
 }

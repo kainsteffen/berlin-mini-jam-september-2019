@@ -9,6 +9,8 @@ public class ParticlesOnCollision : MonoBehaviour
     List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
 
 
+
+
     private void OnParticleCollision(GameObject other)
     {
         //Debug.Log("collision");
