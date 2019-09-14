@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-
+    public int pigsKilled;
 
 
     public int maxLifes, currentLifes;
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public void NewGame()
     {
         currentLifes = maxLifes;
+        pigsKilled = 0;
     }
 
 

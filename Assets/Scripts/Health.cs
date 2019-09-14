@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
 
     public UnityEvent onDie;
 
+    private PigEnemy pigRoot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +23,8 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            onDie.Invoke();
-            Destroy(gameObject);
+            GameManager.Instance.pigsKilled ++;
+            pigRoot.Kill();
         }
     }
 }
