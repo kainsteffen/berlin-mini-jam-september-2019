@@ -32,12 +32,6 @@ public class PlayerController : MonoBehaviour
     Vector3 desiredMovementVector;
 
 
-    private void Awake()
-    {
-        GameManager.Instance.activePlayers.Add(transform);
-    }
-
-
     private void Update()
     {
         float hor = Input.GetAxis("Horizontal");
@@ -48,7 +42,7 @@ public class PlayerController : MonoBehaviour
         Vector3 verV = new Vector3(-camRight.z, 0f, camRight.x) * ver;
         desiredMovementVector = horV + verV;
 
-        //transform.forward = Vector3.Slerp(transform.forward, desiredMovementVector, maxRotationSpeed * Time.deltaTime * desiredMovementVector.magnitude);
+        transform.forward = Vector3.Slerp(transform.forward, desiredMovementVector, maxRotationSpeed * Time.deltaTime * desiredMovementVector.magnitude);
         //Debug.Log("desiredMovementVector magnitude: " + desiredMovementVector.magnitude);
 
         //Debug.Log("acceleration force: " + accelerationSpeed * Time.deltaTime * desiredMovementVector.magnitude);
@@ -57,12 +51,12 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
-
+        /*
         
         float deltaTime = Time.deltaTime;
         //PID Code
         float pError = Vector3.SignedAngle(transform.forward, desiredMovementVector, transform.up);
-        Debug.Log("pError: " + pError);
+        //Debug.Log("pError: " + pError);
         float iError = pError * deltaTime;
         float dError = (pError - lastPError) / deltaTime;
         lastPError = pError;
@@ -74,7 +68,7 @@ public class PlayerController : MonoBehaviour
         if (torque > maxRotationSpeed) torque = maxRotationSpeed;
         else if (torque < -maxRotationSpeed) torque = -maxRotationSpeed;
         //Debug.Log("torque: " + torque);
-        rb.AddTorque(transform.up * torque* desiredMovementVector.magnitude);
+        rb.AddTorque(transform.up * torque* desiredMovementVector.magnitude);*/
     }
     
 }
