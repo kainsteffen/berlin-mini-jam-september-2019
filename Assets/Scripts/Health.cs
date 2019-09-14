@@ -34,6 +34,7 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            print("died");
             GameManager.Instance.pigsKilled ++;
             audioSource.Play();
             pigRoot.Kill();
