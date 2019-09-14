@@ -26,6 +26,7 @@ public class PigEnemy : MonoBehaviour
 
     private bool onGround;
 
+
     [SerializeField]
     private float destinationChecktime;
 
