@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
 
     Vector3 desiredMovementVector;
 
+    private void Start()
+    {
+        GameManager.Instance.activePlayers.Add(transform);
+    }
 
     private void Update()
     {
