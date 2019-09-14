@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
 
     public UnityEvent onDie;
 
-    private PigEnemy pigRoot;
+    public PigEnemy pigRoot;
 
     // Start is called before the first frame update
     void Start()
