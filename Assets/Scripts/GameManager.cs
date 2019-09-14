@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public List<Transform> activePlayers;
 
+    private UIManager uiManager;
+
 
 
 
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
 
         currentLifes = maxLifes;
         pigsKilled = 0;
+
+        uiManager = FindObjectOfType<UIManager>();
     }
 
 
@@ -58,7 +62,8 @@ public class GameManager : MonoBehaviour
         currentLifes--;
         if (currentLifes == 0)
         {
-            GameOverEvent();
+            activePlayers[0].gameObject.GetComponent<AudioListener>().enabled = false;
+            uiManager.ShowGameOverPanel();
 
         }
     }
