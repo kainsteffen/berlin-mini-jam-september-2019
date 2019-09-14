@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,7 +10,7 @@ public class PigEnemy : MonoBehaviour
         None, Falling, Moving,
     }
 
-    public Transform target;
+    public List<Transform> activePlayers;
     public float animSpeed;
     public float speedBoost;
     public Vector3 growSize;
@@ -34,6 +33,7 @@ public class PigEnemy : MonoBehaviour
     private void Awake()
     {
         distanceChecker = GetComponent<DistanceToPlayersChecker>();
+        activePlayers = GameManager.Instance.activePlayers;
     }
 
 
@@ -106,7 +106,7 @@ public class PigEnemy : MonoBehaviour
                 {
                     case State.Moving:
                         nav.enabled = true;
-                        nav.destination = target.position;
+                        nav.destination = GetClosestPayer();  
                         break;
                 }
                 break;
@@ -122,10 +122,20 @@ public class PigEnemy : MonoBehaviour
         state = newState;
     }
 
+    private Vector3 GetClosestPayer()
+    {
+        if(activePlayers.Count == 1)
+        {
+            return activePlayers[0].position;
+        }
+        else
+        {
+            Transform targetedPlayer = activePlayers[Random.Range(0, activePlayers.Count)];
+            return targetedPlayer.position;
+        }
 
 
-
-
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

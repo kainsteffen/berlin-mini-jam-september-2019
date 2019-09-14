@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class GameManager : MonoBehaviour
     public event Action GameOverEvent = delegate { };
 
 
+    public List<Transform> activePlayers;
+
+
+
+
     void Awake()
     {
         if (Instance == null)
@@ -28,14 +34,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
+
+
+
 
     public void NewGame()
     {
         currentLifes = maxLifes;
         pigsKilled = 0;
+        activePlayers = new List<Transform>();
+
+        SceneManager.LoadScene("TestGameSceneJulian");
     }
 
 
