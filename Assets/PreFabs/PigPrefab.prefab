@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 2141979759981360516}
   - component: {fileID: 2141979759981360523}
   - component: {fileID: 2141979759981360513}
+  - component: {fileID: 8646170334153374860}
   m_Layer: 0
   m_Name: PigPrefab
   m_TagString: Untagged
@@ -212,6 +213,20 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8646170334153374860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141979759981360522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97998873fc773db4f9306d331bdb09d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPositions: []
+  tooFarDistance: 10
 --- !u!1 &3666293178130016866
 GameObject:
   m_ObjectHideFlags: 0

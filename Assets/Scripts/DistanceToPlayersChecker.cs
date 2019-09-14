@@ -20,6 +20,11 @@ public class DistanceToPlayersChecker : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        InvokeRepeating("CheckIfCloseToPlayers", 2f, 2f);
+    }
+
 
     private void CheckIfCloseToPlayers()
     {
