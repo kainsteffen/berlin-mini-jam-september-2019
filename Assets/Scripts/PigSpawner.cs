@@ -8,7 +8,7 @@ public class PigSpawner : MonoBehaviour
     private float spawnRange, spawnPerSecond;
 
     [SerializeField]
-    private MockPig pigPrefab;
+    private PigEnemy pigPrefab;
 
     [SerializeField]
     private List<Vector3SO> playerPositions;
@@ -20,7 +20,7 @@ public class PigSpawner : MonoBehaviour
     private int maxActivePigs;
 
 
-    public List<MockPig> activePigs, inactivePigs;
+    public List<PigEnemy> activePigs, inactivePigs;
 
 
 
@@ -46,14 +46,19 @@ public class PigSpawner : MonoBehaviour
 
     private void SpawnPig()
     {
-        MockPig newPig;
+        PigEnemy newPig;
 
         if (inactivePigs.Count > 0)
+        {
             newPig = inactivePigs[0];
+            inactivePigs.RemoveAt(0);
+        }
 
         else
             newPig = Instantiate(pigPrefab);
 
+
+        activePigs.Add(newPig);
         newPig.transform.position = ChooseSpawnPosition();
         newPig.transform.SetParent(transform);
     }
@@ -71,16 +76,22 @@ public class PigSpawner : MonoBehaviour
         }
         else
         {
-            pointInCircle = new Vector2(playerPositions[0].playerPosition.x, playerPositions[0].playerPosition.z) + Random.insideUnitCircle * spawnRange;
+            pointInCircle = new Vector2(playerPositions[0].position.x, playerPositions[0].position.z) + Random.insideUnitCircle * spawnRange;
         }
 
 
         return new Vector3(pointInCircle.x, spawnHeight, pointInCircle.y);
-
-
-
     }
 
+
+
+
+    public void ReturnPigToPool(PigEnemy killedPig)
+    {
+        killedPig.gameObject.SetActive(false);
+        activePigs.Remove(killedPig);
+        inactivePigs.Add(killedPig);
+    }
 
 
 

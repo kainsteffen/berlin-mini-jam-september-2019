@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,6 +24,19 @@ public class PigEnemy : MonoBehaviour
     private Rigidbody rb;
     private float moveAnimValue;
     private bool scalingUp = false;
+
+
+
+    private PigSpawner spawner;
+    private DistanceToPlayersChecker distanceChecker;
+
+
+    private void Awake()
+    {
+        distanceChecker = GetComponent<DistanceToPlayersChecker>();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,8 +64,12 @@ public class PigEnemy : MonoBehaviour
         }
     }
 
-    public void Activate()
+    public void Activate(PigSpawner spawnedFrom)
     {
+        if(spawner == null)
+        {
+            spawner = spawnedFrom;
+        }
 
     }
 
@@ -104,6 +122,11 @@ public class PigEnemy : MonoBehaviour
         state = newState;
     }
 
+
+
+
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.tag == "Ground")
@@ -112,4 +135,12 @@ public class PigEnemy : MonoBehaviour
 
         }
     }
+
+
+
+    public void Kill()
+    {
+        spawner.ReturnPigToPool(this);
+    }
+
 }

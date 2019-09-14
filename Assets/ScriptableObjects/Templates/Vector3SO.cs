@@ -6,5 +6,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Vector3SO : ScriptableObject
 {
-    public Vector3 playerPosition;
+    public Vector3 position;
 }
