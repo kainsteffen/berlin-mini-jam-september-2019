@@ -417,6 +417,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 684dff48348b9784799496657406a401, type: 2}
+    - target: {fileID: 7798862774493868334, guid: f17ac158d9b0285489cfeef090b882af,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f17ac158d9b0285489cfeef090b882af, type: 3}
 --- !u!1 &1069886314
