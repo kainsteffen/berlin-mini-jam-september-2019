@@ -58,10 +58,10 @@ public class PigSpawner : MonoBehaviour
 
         if (inactivePigs.Count > 0)
         {
+            print("spawnFroiPool");
             newPig = inactivePigs[0];
             inactivePigs.RemoveAt(0);
         }
-
         else
         {
             newPig = Instantiate(pigPrefab);
@@ -72,6 +72,7 @@ public class PigSpawner : MonoBehaviour
         newPig.transform.position = ChooseSpawnPosition();
         newPig.transform.SetParent(transform);
         newPig.Activate(this);
+        newPig.gameObject.SetActive(true);
     }
 
 
@@ -99,9 +100,11 @@ public class PigSpawner : MonoBehaviour
 
     public void ReturnPigToPool(PigEnemy killedPig)
     {
+        print("returning");
         killedPig.gameObject.SetActive(false);
         activePigs.Remove(killedPig);
         inactivePigs.Add(killedPig);
+        print(inactivePigs.Count);
     }
 
 

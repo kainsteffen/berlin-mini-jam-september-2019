@@ -200,6 +200,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   pigRoot: {fileID: 2141979759981360523}
+  hitDelayTime: 0.1
+  hitDelayCounter: 0
 --- !u!82 &7596030333838852766
 AudioSource:
   m_ObjectHideFlags: 0
