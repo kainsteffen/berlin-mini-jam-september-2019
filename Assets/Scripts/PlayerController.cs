@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     Vector3 desiredMovementVector;
 
 
+    private void Awake()
+    {
+        GameManager.Instance.activePlayers.Add(transform);
+    }
+
+
     private void Update()
     {
         float hor = Input.GetAxis("Horizontal");

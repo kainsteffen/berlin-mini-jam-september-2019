@@ -24,6 +24,12 @@ public class PigEnemy : MonoBehaviour
     private float moveAnimValue;
     private bool scalingUp = false;
 
+    private bool onGround;
+
+    [SerializeField]
+    private float destinationChecktime;
+
+    private float destinationCheckCounter;
 
 
     private PigSpawner spawner;
@@ -50,68 +56,84 @@ public class PigEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(state)
+        switch (state)
         {
             case State.Falling:
-                if(rb.velocity.magnitude == 0)
+                if (rb.velocity.magnitude == 0)
                 {
                     SetState(State.Moving);
                 }
                 break;
             case State.Moving:
-               PlayMoveAnimation();
+                PlayMoveAnimation();
                 break;
+        }
+
+
+        if (onGround)
+            destinationCheckCounter -= Time.deltaTime;
+        if (destinationCheckCounter <= 0)
+        {
+            nav.SetDestination(GetClosestPayer());
+            destinationCheckCounter = destinationChecktime;
+
         }
     }
 
     public void Activate(PigSpawner spawnedFrom)
     {
-        if(spawner == null)
-        {
-            spawner = spawnedFrom;
-        }
+
+        spawner = spawnedFrom;
+        onGround = false;
+        destinationCheckCounter = destinationChecktime;
+
 
     }
 
     private void PlayMoveAnimation()
     {
-        if(scalingUp)
+        if (scalingUp)
         {
             moveAnimValue = Mathf.Lerp(moveAnimValue, 1, animSpeed);
-        } else
+        }
+        else
         {
             moveAnimValue = Mathf.Lerp(moveAnimValue, 0, animSpeed);
         }
 
-        if(moveAnimValue > 0.99)
+        if (moveAnimValue > 0.99)
         {
             scalingUp = false;
-        } else if(moveAnimValue < 0.01)
+        }
+        else if (moveAnimValue < 0.01)
         {
             scalingUp = true;
         }
 
         nav.speed = startSpeed + moveAnimValue * speedBoost;
-        
+
         transform.localScale = Vector3.Lerp(growSize, shrinkSize, moveAnimValue);
 
     }
 
     private void SetState(State newState)
     {
-        switch(this.state)
+        switch (this.state)
         {
             case State.Falling:
                 switch (newState)
                 {
                     case State.Moving:
                         nav.enabled = true;
-                        nav.destination = GetClosestPayer();  
+                        if (nav.enabled)
+                        {
+                            //  nav.SetDestination(GetClosestPayer());
+                        }
                         break;
                 }
                 break;
             case State.None:
-                switch(newState)
+                switch (newState)
                 {
                     case State.Falling:
                         nav.enabled = false;
@@ -124,7 +146,7 @@ public class PigEnemy : MonoBehaviour
 
     private Vector3 GetClosestPayer()
     {
-        if(activePlayers.Count == 1)
+        if (activePlayers.Count == 1)
         {
             return activePlayers[0].position;
         }
@@ -141,6 +163,7 @@ public class PigEnemy : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "Ground")
         {
+            onGround = true;
             SetState(State.Moving);
 
         }
@@ -149,7 +172,7 @@ public class PigEnemy : MonoBehaviour
 
 
     public void Kill()
-    {        
+    {
         spawner.ReturnPigToPool(this);
     }
 

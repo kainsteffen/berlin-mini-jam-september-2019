@@ -186,11 +186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ef1844e9f36fb419c76ad2889fc401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  activePlayers: []
   animSpeed: 0.3
   speedBoost: 3
   growSize: {x: 1.2, y: 0.7, z: 1.2}
   shrinkSize: {x: 0.7, y: 1.2, z: 0.7}
+  destinationChecktime: 0.5
 --- !u!195 &2141979759981360513
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -225,8 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97998873fc773db4f9306d331bdb09d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPositions: []
-  tooFarDistance: 10
+  tooFarDistance: 100
 --- !u!1 &3666293178130016866
 GameObject:
   m_ObjectHideFlags: 0

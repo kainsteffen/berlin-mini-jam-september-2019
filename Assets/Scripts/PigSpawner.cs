@@ -55,12 +55,15 @@ public class PigSpawner : MonoBehaviour
         }
 
         else
+        {
             newPig = Instantiate(pigPrefab);
+        }
 
 
         activePigs.Add(newPig);
         newPig.transform.position = ChooseSpawnPosition();
         newPig.transform.SetParent(transform);
+        newPig.Activate(this);
     }
 
 

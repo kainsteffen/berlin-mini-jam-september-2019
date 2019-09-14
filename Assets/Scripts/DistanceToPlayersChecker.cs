@@ -5,8 +5,7 @@ using UnityEngine;
 public class DistanceToPlayersChecker : MonoBehaviour
 {
  
-    [SerializeField]
-    private List<Vector3SO> playerPositions;
+ 
 
     [SerializeField]
     private float tooFarDistance;
@@ -22,7 +21,7 @@ public class DistanceToPlayersChecker : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("CheckIfCloseToPlayers", 2f, 2f);
+        InvokeRepeating("CheckIfCloseToPlayers", 3f, 3f);
     }
 
 
@@ -30,10 +29,12 @@ public class DistanceToPlayersChecker : MonoBehaviour
     {
         bool tooFarFromPlayers = true;
 
-        foreach (var position in playerPositions)
+        foreach (var position in pigRoot.activePlayers)
         {
-            if(Vector3.Distance(transform.position, position.position) > tooFarDistance)
+            if(Vector3.Distance(transform.position, position.position) < tooFarDistance)
+            {
                 tooFarFromPlayers = false;
+            }
         }
 
         if(tooFarFromPlayers)

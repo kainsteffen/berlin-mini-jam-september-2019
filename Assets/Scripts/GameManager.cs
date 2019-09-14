@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+
+        activePlayers = new List<Transform>();
     }
 
 
@@ -43,7 +46,6 @@ public class GameManager : MonoBehaviour
     {
         currentLifes = maxLifes;
         pigsKilled = 0;
-        activePlayers = new List<Transform>();
 
         SceneManager.LoadScene("TestGameSceneJulian");
     }
