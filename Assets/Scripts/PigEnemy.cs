@@ -11,6 +11,7 @@ public class PigEnemy : MonoBehaviour
     }
 
     public List<Transform> activePlayers;
+    public GameObject deathExplosion;
     public float animSpeed;
     public float speedBoost;
     public Vector3 growSize;
@@ -178,6 +179,7 @@ public class PigEnemy : MonoBehaviour
 
     public void Kill()
     {
+        Instantiate(deathExplosion, transform.position, deathExplosion.transform.rotation);
         spawner.ReturnPigToPool(this);
     }
 

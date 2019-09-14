@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activePlayers: []
+  deathExplosion: {fileID: 8990846480536174553, guid: 5b8aaa8476f73ca488de328f4c99c115,
+    type: 3}
   animSpeed: 0.3
   speedBoost: 3
   growSize: {x: 1.2, y: 0.7, z: 1.2}
