@@ -12,16 +12,16 @@ public class Health : MonoBehaviour
 
     public PigEnemy pigRoot;
 
-    private AudioSource audioSource;
+    public GameObject audioSource;
 
     public bool dead= false;
 
 
 
-    private void Awake()
+    /*private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-    }
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,10 @@ public class Health : MonoBehaviour
                 dead = true;
                 print("died");
                 GameManager.Instance.pigsKilled++;
-                audioSource.Play();
+                //audioSource.SetActive(true);
+                //audioSource.transform.SetParent(null);
+                Instantiate(audioSource, transform.position, transform.rotation);
+
                 pigRoot.Kill();
             }
         }
