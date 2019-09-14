@@ -167,6 +167,10 @@ public class PigEnemy : MonoBehaviour
             SetState(State.Moving);
 
         }
+        else if(collision.collider.gameObject.tag == "Player")
+        {
+            GameManager.Instance.OnHitPig();
+        }
     }
 
 

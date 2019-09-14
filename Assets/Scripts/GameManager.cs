@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
 
 
         activePlayers = new List<Transform>();
+
+
+        currentLifes = maxLifes;
+        pigsKilled = 0;
     }
 
 
@@ -44,10 +48,8 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        currentLifes = maxLifes;
-        pigsKilled = 0;
 
-        SceneManager.LoadScene("TestGameSceneJulian");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
     }
 
 
@@ -59,6 +61,10 @@ public class GameManager : MonoBehaviour
             GameOverEvent();
     }
 
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+            NewGame();
+    }
 
 }
