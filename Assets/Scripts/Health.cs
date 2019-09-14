@@ -14,10 +14,7 @@ public class Health : MonoBehaviour
 
     private AudioSource audioSource;
 
-    [SerializeField]
-    private float hitDelayTime, hitDelayCounter;
-
-    private bool justBeenHit;
+    public bool dead= false;
 
 
 
@@ -33,29 +30,20 @@ public class Health : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (justBeenHit)
-        {
-
-            hitDelayCounter -= Time.deltaTime;
-            if(hitDelayCounter < 0)
-                justBeenHit= false;
-        }
-    }
-
 
     public void TakeDamage(float damage)
     {
-        if(justBeenHit) return;
-
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (!dead)
         {
-           
-            GameManager.Instance.pigsKilled ++;
-            audioSource.Play();
-            pigRoot.Kill();
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                dead = true;
+                print("died");
+                GameManager.Instance.pigsKilled++;
+                audioSource.Play();
+                pigRoot.Kill();
+            }
         }
     }
 }

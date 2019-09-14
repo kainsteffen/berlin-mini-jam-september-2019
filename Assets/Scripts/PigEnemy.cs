@@ -89,7 +89,7 @@ public class PigEnemy : MonoBehaviour
         onGround = false;
         destinationCheckCounter = destinationChecktime;
 
-
+        GetComponent<Health>().dead = false;
     }
 
     private void PlayMoveAnimation()
