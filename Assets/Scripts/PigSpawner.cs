@@ -13,6 +13,8 @@ public class PigSpawner : MonoBehaviour
 
     private List<Transform> activePlayers;
 
+    public float spawnRateRaiser;
+
 
     [SerializeField]
     private float spawnHeight;
@@ -39,6 +41,7 @@ public class PigSpawner : MonoBehaviour
 
     private void Update()
     {
+        spawnPerSecond += Time.deltaTime * spawnRateRaiser;
         spawnCounter += Time.deltaTime;
         if (spawnCounter > 1.0f / spawnPerSecond)
         {
@@ -100,11 +103,11 @@ public class PigSpawner : MonoBehaviour
 
     public void ReturnPigToPool(PigEnemy killedPig)
     {
-        print("returning");
+        //print("returning");
         killedPig.gameObject.SetActive(false);
         activePigs.Remove(killedPig);
         inactivePigs.Add(killedPig);
-        print(inactivePigs.Count);
+        //print(inactivePigs.Count);
     }
 
 

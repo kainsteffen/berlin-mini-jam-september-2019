@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
             if (currentHealth <= 0)
             {
                 dead = true;
-                print("died");
+               // print("died");
                 GameManager.Instance.pigsKilled++;
                 //audioSource.SetActive(true);
                 //audioSource.transform.SetParent(null);

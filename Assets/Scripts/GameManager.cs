@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private UIManager uiManager;
 
-
+    public AudioSource hitSOund;
 
 
     void Awake()
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     [ContextMenu("HitPig")]
     public void OnHitPig()
     {
+        hitSOund.Play();
         currentLifes--;
         if (currentLifes == 0)
         {
